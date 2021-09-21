@@ -1,0 +1,152 @@
+:root {
+    --custom-black: #100B00;
+    --custom-white:#FFFCF9;
+    --primary:#941C2F;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    padding-bottom: 0;
+    margin:0;
+}
+.white {
+background: var(--custom-white);
+}
+.padding {
+    padding: 0 30px 0 30px;
+    position: relative;
+}
+p {
+    color:var(--custom-black);
+    font-size: 12pt;
+}
+h1,h2,h3,h4 {
+    font-family: 'Catamaran', sans-serif;
+}
+h1 {
+    font-weight: 300;
+    color: var(--custom-black);
+    font-size: 42pt;
+}
+h2 {
+    font-weight: 800;
+    color: #1a1a1a;
+    font-size: 36pt;
+}
+h3 {
+    font-weight: 700;
+    color: #333333;
+    font-size: 30pt;
+    margin-bottom: 0;
+}
+h4 {
+    font-weight: 600;
+    color: #404040;
+    font-size: 20pt;
+}
+
+
+.inverted {
+    color: #FFFCF9;
+}
+header {
+    margin:0;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 60px 15px 60px;
+}
+
+.black {
+    background: var(--custom-black);
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    padding-top: 100px;
+    padding-bottom: 40px;
+    justify-items: center;
+}
+.gridHeader {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 1fr 3fr;
+    height: 150px;
+    width: 100%;
+}
+
+footer {
+    margin-bottom: 0;
+    height: 130px;
+    background-color: var(--custom-black);
+    color: var(--app-custom-white);
+    padding-left: 30px;
+}
+
+.impresseum {
+    color: #fffcfe;
+    font-family:'Catamaran', 'open-sans';
+}
+.source {
+    padding-bottom: 3px;
+    position: absolute;
+    left:20px;
+    color: grey;
+    font-size: 10pt;
+}
+.icon {
+    height: 36pt;
+    margin-right:10px;
+    transform: translateY(4pt);
+}
+.title {
+    justify-self:start;
+    margin-left: 60px;
+    font-weight: 100;
+}
+.faqImage {
+    position: absolute;
+    width:25%;
+    top:80px;
+    right:25%;
+    transform: translateX(50%);
+}
+.split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+.longText {
+    margin:0px;
+    text-align: justify;
+    padding: 0 30px 0 30px;
+}
+.longText h4 {
+    margin-bottom: 0px;
+    margin-top: 0;
+}
+.longText p {
+    margin-bottom: 30px;
+    margin-top: 0;
+}
+.halfScreenImage {
+    width: 90%;
+    height: 100%;
+    object-fit: cover;
+    justify-self: center;
+}
+@media only screen and (max-width: 900px) {
+    .split {
+        grid-template-columns: 1fr;
+    }
+}

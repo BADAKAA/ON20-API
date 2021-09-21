@@ -100,7 +100,7 @@ app.get("/events/:index", (req, res) => {
   });
 
 ///Endpunkt 3 
-app.delete("events/:index", (req, res) => {
+app.delete("/events/:index", (req, res) => {
 
   console.log("executed");
   if (!events) return res.status(404).send("Events data could not be found.");

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="dist/stencil-starter-on/stencil-starter-on.esm.js" type="module"></script>
+    <link rel="stylesheet" href="./dist/stencil-starter-on/stencil-starter-on.css" />
+    <title>Eventist</title>
+    <link rel="shortcut icon" href="favicon.svg" type="image/svg">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+    <base href="/website/" target="_blank">
+</head>
+
+<body>
+        <div class="gridHeader">
+            <h1 class="title"><nobr>Eventist <img class="icon" src="./icons/home.svg"></img></nobr></h1>
+            <search-bar height="60px"design="angular" icon="#941C2F" position="relative" width="90%" component="event-list" justify="center"></search-bar>
+        </div>
+
+        <date-picker component="event-list" backgroundcolor= "none" monthcolor="black" width="100%"></date-picker>
+        <event-list dataurl="test"color="#941C2F" buttons="true" animated="true"></event-list>
+        <button-up name="↑"></button-up>
+
+        <div class="source">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+</body>
+</html>

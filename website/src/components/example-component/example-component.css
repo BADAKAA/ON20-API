@@ -1,0 +1,13 @@
+
+:host {
+    display: block;
+    border: 1px dashed coral;
+    padding: 10px;
+}
+
+:host>button {
+    background-color: teal;
+    color: aliceblue;
+    padding: 5px;
+    margin-top: 10px;
+}

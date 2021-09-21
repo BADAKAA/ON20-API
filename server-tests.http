@@ -10,3 +10,7 @@ content-type: application/json
 }
 ###
 GET http://localhost:8080/data
+
+###
+
+DELETE  http://localhost:8080/events/4

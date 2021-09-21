@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  margin-bottom: 30px;
+}
+
+button{
+  font-family: 'Catamaran', sans-serif;
+  font-size: 200%;
+  cursor: pointer;
+  text-align: center;
+  height: 60px;
+  width: 60px;
+
+  color: #FFFCF9;
+  background-color: #BFBFBF;
+  border-radius: 50%;
+  border: none;
+  /*box-shadow: 0 0 5px rgb(172, 172, 172);*/
+  border-color: #BFBFBF;
+
+  transition: background 0.3s, transform 0.3s;
+}
+
+.button {
+  position: relative;
+  padding: 10px 0 10px 0;
+  text-align: center;
+}
+
+button:hover{
+  background-color: #941C2F;
+  transform: scale(1.1,1.1);
+}
+button:focus {
+  outline: none;
+}
