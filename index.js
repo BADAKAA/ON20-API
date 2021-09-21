@@ -4,6 +4,10 @@ const PORT = 8080;
 app.use(express.json())
 
 
+const cors = require('cors');
+app.use(cors({
+  origin: '*'
+}));
 const fs = require("fs");
 const data = require("./database.json");
 const ufos = require("./ufo-data.json");
@@ -65,7 +69,7 @@ app.get("/events/:index", (req, res) => {
   });
   
   //Endpunkt 2
-  app.post("/events", (req, res) => {
+  app.post("/events/post", (req, res) => {
     if (!events)
       return res.status(404).send({ message: "Source data not found." });
   
@@ -85,7 +89,7 @@ app.get("/events/:index", (req, res) => {
       description &&
       image)
     )
-      return res.status(404).send({ message: "Please specify the event with the following data: title, date, start, end, city, country, location, adress, description and image !" });
+      return res.status(418).send({ message: "Please specify the event with the following data:"+Object.keys(events[0])+"!" });
     //Fehlerbehandlung 2 die prüft, ob ein Event mit dem Index bereits vorhanden ist
     const duplicatedTitle = events.find((e) => e.title.trim() == title.trim());
     if (duplicatedTitle)

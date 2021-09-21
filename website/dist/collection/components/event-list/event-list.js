@@ -12,15 +12,14 @@ export class EventList {
       h("ul", { class: "eventList" })));
   }
   componentDidLoad() {
-    console.log(this.dataurl);
     referenceObjects(this.el);
     //Event data is fetched AFTER elements have been referenced. Otherwise, there would be nowhere to append elements in fillList()
     fetch(this.dataurl)
       .then(results => results.json())
       .then(data => {
-      eventData = data.events;
+      eventData = data;
       sortItems();
-      console.log(`%cEvent data was last updated ${data.lastUpdated}.`, "color:darkgreen; font-family:'Open Sans', sans-serif;line-height:20pt");
+      console.log(`%cEvent data is fetched from: ${this.dataurl}.`, "color:darkgreen; font-family:'Open Sans', sans-serif;line-height:20pt");
       updateLayout();
     });
     if (this.buttons)

@@ -8,8 +8,11 @@ body {
     padding-bottom: 0;
     margin:0;
 }
+* {
+    box-sizing: border-box;
+}
 .white {
-background: var(--custom-white);
+    background: var(--custom-white);
 }
 .padding {
     padding: 0 30px 0 30px;
@@ -48,14 +51,6 @@ h4 {
 .inverted {
     color: #FFFCF9;
 }
-header {
-    margin:0;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0px 60px 15px 60px;
-}
 
 .black {
     background: var(--custom-black);
@@ -73,15 +68,23 @@ a {
     padding-bottom: 40px;
     justify-items: center;
 }
-.gridHeader {
-    display: grid;
-    justify-items: center;
+header {
+    display: flex;
+    max-width: 100vw;
+    justify-items: space-between;
     align-items: center;
-    grid-template-columns: 1fr 3fr;
     height: 150px;
     width: 100%;
 }
-
+header > *:first-child {
+    width:33%;
+}
+header i {
+    font-size: 0.8em;
+}
+header i::before {
+    transform: translateY(-5px);
+}
 footer {
     margin-bottom: 0;
     height: 130px;
@@ -101,11 +104,7 @@ footer {
     color: grey;
     font-size: 10pt;
 }
-.icon {
-    height: 36pt;
-    margin-right:10px;
-    transform: translateY(4pt);
-}
+
 .title {
     justify-self:start;
     margin-left: 60px;
