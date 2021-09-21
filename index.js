@@ -11,6 +11,21 @@ const ufos = require("./ufo-data.json");
 const events = require("./event-data.json");
 //
 
+
+
+function saveData () {
+
+  const eventsToBeSaved = JSON.stringify(events, null, 2);
+
+  fs.writeFile("./event-data.json", eventsToBeSaved, () =>
+  console.log("Data written to file.")
+);
+
+}
+
+
+ 
+
 app.listen(
     PORT,
     () => console.log(`Server running on http://localhost:${PORT}`)
@@ -42,7 +57,7 @@ app.get("/events", async (req, res) => {
 //Endpunkt 1
 app.get("/events/:index", (req, res) => {
     //return res.status(200).send(events);
-    if (!events) return res.status(404).send("Events data could not be found.");
+    if (!events) return res.status(404).send("Event data could not be found.");
     const { index } = req.params;
     if (!index) return res.status(200).send(events);
     if (!events[index]) return res.status(404).send("A event with index: " + index + " does not exist.");   
@@ -70,7 +85,7 @@ app.get("/events/:index", (req, res) => {
       description &&
       image)
     )
-      return res.status(404).send({ message: "Please specify the event" });
+      return res.status(404).send({ message: "Please specify the event with the following data: title, date, start, end, city, country, location, adress, description and image !" });
     //Fehlerbehandlung 2 die prüft, ob ein Event mit dem Index bereits vorhanden ist
     const duplicatedTitle = events.find((e) => e.title.trim() == title.trim());
     if (duplicatedTitle)
@@ -90,32 +105,33 @@ app.get("/events/:index", (req, res) => {
       description: description,
       image: image,
     });
-    const eventsToBeSaved = JSON.stringify(events, null, 2);
-    fs.writeFile("./event-data.json", eventsToBeSaved, () =>
-      console.log("Data written to file.")
-    );
+
+    saveData();
     res.status(200).send({
       message: `The item '${title}' was successfully added.`,
     });
   });
 
 ///Endpunkt 3 
-app.delete("/events/:index", (req, res) => {
+app.delete("/events/delete/:index", (req, res) => {
 
-  console.log("executed");
-  if (!events) return res.status(404).send("Events data could not be found.");
+  if (!events) return res.status(404).send("Event data could not be found.");
+  if (events.length === 0) return res.status(404).send("There are no bananas");
   
-  const { index } = req.params;
+  let { index } = req.params;
 
-  if (!events[index]) return res.status(404).send("A event with index: " + index + " does not exist.");   
+  if(index === "last" || index === "-1") index = events.length -1;
+
+  if (!events[index]) return res.status(404).send("An event with index: " + index + " does not exist.");   
+
+  const deletedEvent = events.splice(index, 1 );
+  
+  saveData();
 
   return res.status(200).send({
-    message: "This event would have been deleted" ,
-    event: events[index]});
-
-
-
-
+    message: "This event was deleted" ,
+    event: deletedEvent
+  });
 });
 
 
