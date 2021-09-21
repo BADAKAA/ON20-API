@@ -1,0 +1,22 @@
+.delete {
+    label:not(.active) {
+        opacity: 0.5;
+    }
+    button {
+        text-transform: uppercase;
+        background-color: var(--blue);
+        border: none;
+        padding: 0.5rem;
+        color: white;
+        width: 100%;
+    }
+}
+.two-buttons {
+    gap: 2rem;
+}
+#delete-event-button {
+    background-color: var(--red);
+}
+#update-event-button {
+    background-color: var(--light-blue);
+}

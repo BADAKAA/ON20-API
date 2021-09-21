@@ -1,55 +1,78 @@
 class HTTP {
         
-    async delete(url) {
-        const response = await fetch(url, {
-            method: 'DELETE',
+    async request(method,url,body) {
+        const HTTPRequest = {
+            method: method,
             headers: {
                 'Content-type': 'application/json'
             }
-        });
+        };
+        if (body) HTTPRequest.body = body;
+        const response = await fetch(url, HTTPRequest);
+        console.log("The following request was sent to ",url.trim(),":\n",HTTPRequest,"\n\n\nThe response was:\n",response);
         return response;
     }
-    async get(url) {
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json'
-            }
-        });
-        return response;
-    }
-    async patch(url,body) {
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        });
-        return response;
-    }
-    async post(url,body) {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        });
-        return response;
-    }
+
+    delete = async (url) => this.request("DELETE",url);
+    get = async (url) => this.request("GET",url);
+    patch = async (url,body) => this.request("PATCH",url,JSON.stringify(body));
+    post = async (url,body) => this.request("POST",url,JSON.stringify(body));
 
 }
 
 const http = new HTTP();
-const submit = document.querySelector("input[type='submit']"); 
-console.log(submit);
-submit.addEventListener("click",sendPost);
-function sendDelete(e) {
+
+let firstEventDisplayed = false;
+
+const addEventButton = document.querySelector("#add-event-button"); 
+addEventButton.addEventListener("click",sendPost);
+
+const previewEventButton = document.querySelector("#update-preview-button"); 
+previewEventButton.addEventListener("click",updatePreview);
+
+const deleteEventButton = document.querySelector("#delete-event-button"); 
+deleteEventButton.addEventListener("click",deleteEvent);
+
+const updateEventButton = document.querySelector("#update-event-button"); 
+updateEventButton.addEventListener("click",updateEvent);
+
+async function deleteEvent(e) {
     e.preventDefault();
-    http.delete("http://localhost:8080/events/delete/0");
+    if (!firstEventDisplayed) return console.error("No event selected yet.");
+    const eventSelector = document.querySelector("#index-input");
+    const response = await http.delete("http://localhost:8080/events/delete/"+eventSelector.value);
+    if (response.status<300&&response.status>199) console.log("DELETION SUCESSFULL");
 }
 
+async function updateEvent(e) {
+    e.preventDefault();
+    if (!firstEventDisplayed) return console.error("No event selected yet.");
+    const eventSelector = document.querySelector("#index-input");
+    const newEvent = {};
+    const inputs = document.querySelectorAll(".preview-event-input");
+    for (const input of inputs) {
+        newEvent[input.name] = input.value??"";
+    }
+    const response = await http.patch("http://localhost:8080/events/patch/"+eventSelector.value,newEvent);
+    if (!response) return console.error("Event not found.");
+}
+
+async function updatePreview(e) {
+    e.preventDefault();
+    firstEventDisplayed=true;
+    const eventSelector = document.querySelector("#index-input");
+    const response = await http.get("http://localhost:8080/events/"+eventSelector.value);
+    if (!response) return console.error("Event not found.");
+    const selectedEvent = await response.json();
+    const inputs = document.querySelectorAll(".preview-event-input");
+    for (const input of inputs) {
+        input.value = selectedEvent[input.name]??"";
+        if (input.nodeName=="TEXTAREA") {
+            input.style.height = "";
+            input.style.height = input.scrollHeight + "px";
+        }
+    }
+}
 function sendPost(e) {
     e.preventDefault();
     const inputs = document.querySelectorAll(".add-event-input");

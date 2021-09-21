@@ -1,0 +1,34 @@
+body {
+    margin:0;
+    min-height: 100vh;
+    padding: 0 3rem 0 3rem;
+}
+* {
+    font-family: 'Lexend','Mulish','Roboto','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+.title {
+    margin-top: 1.8rem;
+    margin-bottom: 1.4rem;
+}
+.title, .title a {
+    font-family: 'Catamaran','Lexend',sans-serif;
+    font-weight: 100;
+    font-size: 42pt;
+}
+header{
+    width: 100%;
+    text-align: left;
+}
+.icon {
+    height:3rem;
+    transform: translateY(0.5rem);
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+input {
+    padding-right: 1rem;
+}
