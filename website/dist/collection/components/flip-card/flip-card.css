@@ -1,0 +1,102 @@
+:host {
+  display: inline-block;
+}
+.flipcardContainer {
+  position: relative;
+  width: clamp(100px, 22vw, 400px);
+  padding-top: 110%;
+  background: none;
+}
+
+.flipcard {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  perspective: 1000px;
+  font-size: clamp(10pt, 1.4rem, 26pt);
+  transform: translateY(-100%);
+}
+
+
+.content {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  text-align: center;
+  justify-content: center;
+}
+
+.imgBox {
+  position: relative;
+  margin-left: 5%;
+  margin-top: 5%;
+  width: 90%;
+  padding-top: 86%;
+  backface-visibility: hidden;
+}
+img {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+
+.content h2 {
+  font-family: 'Catamaran', sans-serif;
+  font-size: 1.25em;
+  margin: 0.2em 0 0 0;
+}
+
+.front,
+.back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: white;
+  backface-visibility: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+
+.back {
+  background: #03446A;
+  color: white;
+  transform: rotateY( 180deg);
+  text-align: left;
+}
+
+.back h2{
+  font-family: 'Catamaran', sans-serif;
+  margin-top: 15px;
+  margin-left: 20px;
+}
+.back h3{
+  font-family: 'Catamaran', sans-serif;
+  font-size: 0.75em;
+  margin-top: 0.5em;
+}
+.backInput{
+  margin: 0 1em 0.5em 1em;
+}
+
+.backInput p{
+  font-family: 'Catamaran', sans-serif;
+  font-size: 0.7em;
+  text-align: justify;
+}
+
+.backInput element{
+  cursor: pointer;
+}
+
+.flipcard-mouseover .content {
+  transform: rotateY(180deg);
+  transition: transform 1s;
+}

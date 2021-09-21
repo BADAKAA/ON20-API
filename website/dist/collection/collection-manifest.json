@@ -1,0 +1,24 @@
+{
+  "entries": [
+    "./components/button-up/button-up.js",
+    "./components/cookie-banner/cookie-banner.js",
+    "./components/date-picker/date-picker.js",
+    "./components/event-list/event-list.js",
+    "./components/example-component/example-component.js",
+    "./components/faq-component/faq-component.js",
+    "./components/flip-card/flip-card.js",
+    "./components/heart-button/heart-button.js",
+    "./components/image-slider/image-slider.js",
+    "./components/my-component/my-component.js",
+    "./components/my-menu/my-menu.js",
+    "./components/my-smlink/my-smlink.js",
+    "./components/search-bar/search-bar.js"
+  ],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "2.4.0",
+    "typescriptVersion": "4.1.3"
+  },
+  "collections": [],
+  "bundles": []
+}

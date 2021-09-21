@@ -1,0 +1,22 @@
+:host {
+  display: block;
+}
+
+#likeBtn{
+  cursor:pointer;
+  width: 45px;
+  height: 45px;
+  background-color:#100B00;
+  border-radius: 4px;
+  color: white;
+  font-size: 150%;
+  text-align: center;
+  margin:30px;
+  box-shadow: none;
+  border:none;
+  border-radius: 50%;
+}
+
+#likeBtn:focus{
+  outline: none;
+}

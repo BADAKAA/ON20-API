@@ -1,0 +1,56 @@
+:host {
+  display: block; 
+  position: sticky;
+
+}
+
+
+.button {
+  background: #941c2f;
+  border: 1px solid #941c2f;
+  border-radius: 0;
+  color:#fffcfe;
+  font-family: 'Catamaran', 'open-sans';
+  font-size: 1.5rem;
+  font-weight:500;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  text-align:center;
+  width:33.33%;
+  box-sizing: border-box;
+  
+  height: 55px;
+  display: block;
+  float: left;
+  position: sticky;
+  cursor: pointer;
+  transition: font-size 0.3s, background 0.3s;
+}
+
+
+.button:hover{
+  font-size: 1.6rem;
+}
+
+  
+button:hover{
+  
+  background:#fffcfe;
+  color:#941c2f;
+  
+}
+button:focus {
+  outline: none;
+}
+
+.footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+
+ 
+  text-align: center;
+}
+

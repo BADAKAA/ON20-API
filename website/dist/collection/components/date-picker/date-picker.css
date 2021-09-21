@@ -1,0 +1,55 @@
+:host {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0px;
+}
+.datePicker{
+  width: 330px;
+  /*border removed for  releaseto look better with other components
+  border:1px solid lightgray;
+  border-radius: 30px;
+  */
+  font-size: 16pt;
+}
+
+.Header {
+  font-size: 20pt;
+  font-family: 'Catamaran', sans-serif;
+  font-weight: 750;
+  margin-top: 5px;
+  text-align: center;
+}
+
+#previous{
+  margin-right: 20px;
+  cursor:pointer;
+}
+
+#next{
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.monthBoxes{
+  width: 45px;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  display: inline-block;
+  padding: 8px;
+  cursor: pointer;
+  margin: 4px;
+  margin-left: 13px;
+  margin-right: 6px;
+  margin-bottom: 12px;
+  transition: background 0.3s, color;
+}
+
+.monthBoxes:hover{
+  background-color: #941C2F;
+  color: #fffcf9;
+}
+
+#datePickerFrame {
+text-align: center;
+}

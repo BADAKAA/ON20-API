@@ -1,0 +1,36 @@
+:host {
+  display: block;
+}
+
+.faqCard {
+  margin-top: 10px;
+  width: 45%;
+  background-color: #FFFCF9;
+  display: block;
+}
+
+.heading {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #941C2F;
+  color: #FFFCF9;
+  padding-left: 15px;
+  padding-right: 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.question {
+  cursor: pointer;
+}
+
+.textBody {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+  max-width: 100%;
+  text-align: justify;
+  display: none;
+}
