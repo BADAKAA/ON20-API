@@ -45,27 +45,17 @@ app.get("/events/:index", (req, res) => {
     if (!events) return res.status(404).send("Events data could not be found.");
     const { index } = req.params;
     if (!index) return res.status(200).send(events);
-    if (!events[index])
-      return res.status(404).send("A event with: " + index + " does not exist.");
+    if (!events[index]) return res.status(404).send("A event with index: " + index + " does not exist.");   
     return res.status(200).send(events[index]);
   });
   
   //Endpunkt 2
-  app.post("/events/test", (req, res) => {
+  app.post("/events", (req, res) => {
     if (!events)
       return res.status(404).send({ message: "Source data not found." });
   
     const { index } = req.params;
-    const { title } = req.body;
-    const { date } = req.body;
-    const { start } = req.body;
-    const { end } = req.body;
-    const { city } = req.body;
-    const { country } = req.body;
-    const { location } = req.body;
-    const { adress } = req.body;
-    const { description } = req.body;
-    const { image } = req.body;
+    const { title, date, start, end, city, country, location, adress, description, image } = req.body;
   
     //Fehlerbehandlung die prüft, ob alle geforderten Attribute mitgegeben werden
     if (
@@ -109,8 +99,24 @@ app.get("/events/:index", (req, res) => {
     });
   });
 
+///Endpunkt 3 
+app.delete("events/:index", (req, res) => {
+
+  console.log("executed");
+  if (!events) return res.status(404).send("Events data could not be found.");
+  
+  const { index } = req.params;
+
+  if (!events[index]) return res.status(404).send("A event with index: " + index + " does not exist.");   
+
+  return res.status(200).send({
+    message: "This event would have been deleted" ,
+    event: events[index]});
 
 
+
+
+});
 
 
 
