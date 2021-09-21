@@ -134,6 +134,31 @@ app.delete("/events/delete/:index", (req, res) => {
   });
 });
 
+///Endpunkt 4
+
+app.patch("/events/patch/:index", (req, res) => {
+
+  if (!events) return res.status(404).send("Event data could not be found.");
+  if (events.length === 0) return res.status(404).send("There are no bananas");
+  
+  let { index } = req.params;
+  const { title, date, start, end, city, country, location, adress, description, image } = req.body;
+
+  if(index === "last" || index === "-1") index = events.length -1;
+  if (!events[index]) return res.status(404).send("An event with index: " + index + " does not exist.");   
+
+  for(const key in req.body) {
+    if(!Object.keys(events[0]).includes(key)) continue;
+    events[index][key] = req.body[key];
+  }
+  
+  saveData();
+
+  return res.status(200).send({
+    message: "The event was updated" ,
+    event: events[index]
+  });
+});
 
 
 
