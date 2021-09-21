@@ -42,7 +42,7 @@ app.get("/events", async (req, res) => {
 //Endpunkt 1
 app.get("/events/:index", (req, res) => {
     //return res.status(200).send(events);
-    if (!events) return res.status(404).send("Events data could not be found.");
+    if (!events) return res.status(404).send("Event data could not be found.");
     const { index } = req.params;
     if (!index) return res.status(200).send(events);
     if (!events[index]) return res.status(404).send("A event with index: " + index + " does not exist.");   
@@ -100,22 +100,28 @@ app.get("/events/:index", (req, res) => {
   });
 
 ///Endpunkt 3 
-app.delete("events/:index", (req, res) => {
+app.delete("/events/delete/:index", (req, res) => {
 
   console.log("executed");
-  if (!events) return res.status(404).send("Events data could not be found.");
+  if (!events) return res.status(404).send("Event data could not be found.");
+  if (events.length === 0) return res.status(404).send("There are no bananas");
   
-  const { index } = req.params;
+  let { index } = req.params;
 
-  if (!events[index]) return res.status(404).send("A event with index: " + index + " does not exist.");   
+  if(index === "last" || index === "-1") index = events.length -1;
+
+  if (!events[index]) return res.status(404).send("An event with index: " + index + " does not exist.");   
+
+  const deletedEvent = events.splice(index, 1 );
+  const eventsToBeSaved = JSON.stringify(events, null, 2);
+  fs.writeFile("./event-data.json", eventsToBeSaved, () =>
+    console.log("Data written to file.")
+  );
 
   return res.status(200).send({
-    message: "This event would have been deleted" ,
-    event: events[index]});
-
-
-
-
+    message: "This event was deleted" ,
+    event: deletedEvent
+  });
 });
 
 
