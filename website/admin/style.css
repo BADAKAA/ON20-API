@@ -4,6 +4,7 @@
   --blue:#0D2C54;
   --light-blue:#00A6ED;
   --orange: #FFB400;
+  --login-colour: var(--light-blue) ;
 }
 
 .login {
@@ -61,7 +62,7 @@
   font-size: 1.3rem;
   transform: none;
   padding: 10px;
-  background: var(--light-blue);
+  background: var(--login-colour);
   color: white;
   min-width: 50px;
   text-align: center;
@@ -72,10 +73,10 @@
   outline: none;
 }
 .login .input-field:focus {
-  border: 1px solid var(--light-blue);
+  border: 1px solid var(--login-colour);
 }
 .login .btn {
-  background-color: var(--light-blue);
+  background-color: var(--login-colour);
   color: white;
   padding: 15px 20px;
   border: none;
@@ -166,6 +167,9 @@ form {
 form h2 {
   font-weight: 800;
   text-align: center;
+}
+form a i {
+  pointer-events: none;
 }
 
 ul {
