@@ -6,6 +6,87 @@
   --orange: #FFB400;
 }
 
+.login {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* Style the input container */
+  /* Style the form icons */
+  /* Style the input fields */
+  /* Set a style for the submit button */
+}
+.login #login-button, .login #logout-button {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: 2rem;
+  transition: transform 0.3s;
+}
+.login #login-button i, .login #logout-button i {
+  margin-right: 0.5rem;
+  font-size: 2rem;
+}
+.login #login-button:hover, .login #logout-button:hover {
+  transform: scale(1.05);
+}
+.login #logout-button {
+  display: none;
+}
+.login.logged-in #login-button, .login.logged-in input, .login.logged-in .icon {
+  display: none;
+}
+.login.logged-in #logout-button {
+  display: flex;
+}
+.login input {
+  margin: 0;
+  border: 1px solid #bbb;
+}
+.login input:hover, .login input:focus {
+  box-shadow: none;
+}
+.login > * {
+  height: min-content;
+}
+.login .input-container {
+  display: flex;
+  width: 100%;
+}
+.login .icon {
+  margin-left: 2rem;
+  font-size: 1.3rem;
+  transform: none;
+  padding: 10px;
+  background: var(--light-blue);
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+.login .input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+.login .input-field:focus {
+  border: 1px solid var(--light-blue);
+}
+.login .btn {
+  background-color: var(--light-blue);
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.login .btn:hover {
+  opacity: 1;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -30,7 +111,20 @@ body {
 
 header {
   width: 100%;
-  text-align: left;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#error-message {
+  color: var(--orange);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin: 0;
+  pointer-events: none;
+  transform: translate(-50%, -150%);
 }
 
 .icon {

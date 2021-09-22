@@ -11,12 +11,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-        <link rel="shortcut icon" href="../favicon.svg" type="image/svg">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;300;400;500;600;700;800;900&display=swap"rel="stylesheet">
+    <link rel="shortcut icon" href="../favicon.svg" type="image/svg">
 
     <link rel="stylesheet" href="./style.css">
 </head>
@@ -26,8 +23,25 @@
         <h1 class="title">
             <nobr><a href="../"> <i class="bi bi-house"></i> Eventist</nobr></a>
         </h1>
-        <search-bar height="60px" design="angular" icon="#941C2F" position="relative" width="90%" component="event-list"
-            justify="center"></search-bar>
+        <div class="login" id="login-container">
+            <div class="input-container">
+                <i class="bi bi-person-fill icon"></i>
+              <input class="input-field" type="text" placeholder="Username" name="username" id="username-input">
+            </div>
+            <div class="input-container">
+                <i class="bi bi-key-fill icon"></i>
+              <input class="input-field" type="text" placeholder="Password" name="password" id="password-input">
+            </div>
+            <button id="login-button">
+                <i class="bi bi-box-arrow-in-right"></i>
+                Login
+            </button >
+            <button id="logout-button">
+                <i class="bi bi-box-arrow-left"></i>
+                Logout
+            </button>
+        </div>
+        <p id="error-message"></p>
     </header>
     <div class="forms">
 
@@ -83,7 +97,7 @@
                 </li>
 
                 <li>
-                    <input type="submit" id="add-event-button"value="EVENT VERÖFFENTLICHEN">
+                    <input type="submit" id="add-event-button" value="EVENT VERÖFFENTLICHEN">
                 </li>
             </ul>
         </form>
@@ -95,7 +109,7 @@
                     <input value="0" type="number" id="index-input" name="index">
                 </li>
                 <li>
-                    <button class="update-preview" id="update-preview-button">EVENT ANZEIGEN <i class="bi bi-arrow-clockwise"></i></button>
+                    <button class="update-preview" id="update-preview-button">EVENT ANZEIGEN</button>
                 </li>
                 <li>
                     <label>Titel</label>
@@ -144,18 +158,11 @@
                     <input type="submit" id="update-event-button" value="EVENT AKTUALISIEREN">
                     <input type="submit" id="delete-event-button"value="EVENT LÖSCHEN">
                 </li>
-                <li>
-                    <label>Username</label>
-                    <input class="preview-event-input" type="text" value="test" id="username">
-                    <label>Password</label>
-                    <input class="preview-event-input" type="password" id="password">
-                </li>
             </ul>
         </form>
     </div>
 
     <script src="script.js"></script>
-    <script src="../../index.js"></script>
 </body>
 
 </html>

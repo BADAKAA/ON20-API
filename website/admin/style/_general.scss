@@ -18,7 +18,20 @@ body {
 }
 header{
     width: 100%;
-    text-align: left;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#error-message {
+    color: var(--orange);
+    position: absolute;
+    top: 100%;
+    left:50%;
+    margin: 0;
+    pointer-events: none;
+    transform: translate(-50%,-150%);
 }
 .icon {
     height:3rem;
@@ -32,3 +45,4 @@ a {
 input {
     padding-right: 1rem;
 }
+

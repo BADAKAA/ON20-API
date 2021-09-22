@@ -1,0 +1,90 @@
+.login {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    #login-button,#logout-button {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        i {
+            margin-right: 0.5rem;
+            font-size: 2rem;
+        }
+        cursor: pointer;
+        margin-left: 2rem;
+        transition: transform 0.3s;
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+    #logout-button {
+        display: none;
+    }
+    &.logged-in {
+        #login-button,input, .icon {
+            display: none;
+        }
+        #logout-button {
+            display: flex;
+        }
+
+    }
+
+    input {
+        margin: 0;
+        border: 1px solid #bbb;
+        &:hover,&:focus {
+            box-shadow: none;
+        }
+    }
+    & > * {
+        height: min-content;
+    }
+
+/* Style the input container */
+  .input-container {
+    display: flex;
+    width: 100%;
+  }
+  
+  /* Style the form icons */
+  .icon {
+    margin-left: 2rem;
+    font-size: 1.3rem;
+    transform: none;
+    padding: 10px;
+    background: var(--light-blue);
+    color: white;
+    min-width: 50px;
+    text-align: center;
+  }
+  
+  /* Style the input fields */
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+  }
+  
+  .input-field:focus {
+    border: 1px solid var(--light-blue);
+  }
+  
+  /* Set a style for the submit button */
+  .btn {
+    background-color: var(--light-blue);
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+  
+  .btn:hover {
+    opacity: 1;
+  }
+}

@@ -20,17 +20,17 @@ const { Hash } = require("crypto");
 const eventKeys = events[0]
   ? Object.keys(events[0])
   : [
-      "title",
-      "date",
-      "start",
-      "end",
-      "city",
-      "country",
-      "location",
-      "adress",
-      "description",
-      "image",
-    ];
+    "title",
+    "date",
+    "start",
+    "end",
+    "city",
+    "country",
+    "location",
+    "adress",
+    "description",
+    "image",
+  ];
 console.log("Event Keys:", eventKeys);
 
 function saveData() {
@@ -40,14 +40,11 @@ function saveData() {
   );
 }
 
+const getUser = (password) => credentials.users[getHash(password)];
+
 const crypto = require("crypto");
-const getHash = (password) =>
-  crypto
-    .createHash("sha256")
-    .update(password + credentials.salt)
-    .digest("hex");
-const login = (userName, password) =>
-  credentials.users[getHash(password)] === userName ? true : false;
+const getHash = (password) => crypto.createHash("sha256").update(password + credentials.salt).digest("hex");
+const login = (username, password) => (getUser(password) && getUser(password) == username) ? true : false;
 
 function addUser(password, userName) {
   credentials.users[getHash(password)] = userName;
@@ -64,6 +61,12 @@ app.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)
 );
 
+// LOGIN
+
+app.post("/login", (req, res)=> {
+  const {username,password} = req.body;
+  login(username,password) ? res.status(200).send("Login is valid.") : res.status(401).send("Invalid Login.");
+})
 ///EVENT DATA BASE
 app.get("/events", async (req, res) => {
   if (events) return res.status(200).send(events);
@@ -74,9 +77,7 @@ app.get("/events", async (req, res) => {
 app.get("/images", (req, res) => {
   fs.readdir("./images", (err, files) => {
     if (err) return res.status(404).send(err);
-    files
-      ? res.status(200).send(files)
-      : res.status(404).send("No files could be found.");
+    files ? res.status(200).send(files) : res.status(404).send("No files could be found.");
   });
 });
 
@@ -95,9 +96,7 @@ app.post("/images/upload/", (req, res) => {
   });
   fs.writeFile(`./images/${filename}`, encoding + data, (err) => {
     console.log(err);
-    err
-      ? res.status(400).send(err)
-      : res.status(200).send("File sucessfully uploaded.");
+    err ? res.status(400).send(err) : res.status(200).send("File sucessfully uploaded.");
   });
 });
 //Endpunkt 1
@@ -107,9 +106,7 @@ app.get("/events/:index", (req, res) => {
   if (!index) return res.status(400).send("No index specified.");
   if (index === "last" || index === "-1") index = events.length - 1;
   if (!events[index])
-    return res
-      .status(404)
-      .send("An event with index '" + index + "' does not exist.");
+    return res.status(404).send("An event with index '" + index + "' does not exist.");
   return res.status(200).send(events[index]);
 });
 
@@ -125,9 +122,7 @@ app.post("/events/post", (req, res) => {
   //Fehlerbehandlung die prüft, ob alle geforderten Attribute mitgegeben werden
   for (const key of eventKeys) {
     if (!newEvent[key])
-      return res
-        .status(418)
-        .send({
+      return res.status(418).send({
           message:
             "Please make sure the event contains the following data:" +
             Object.keys(events[0]) +
@@ -139,9 +134,7 @@ app.post("/events/post", (req, res) => {
     (e) => e.title.trim() == newEvent.title.trim()
   );
   if (duplicatedTitle)
-    return res
-      .status(409)
-      .send({ message: "An item with this title already exists." });
+    return res.status(409).send({ message: "An item with this title already exists." });
   events.push(newEvent);
 
   saveData();
@@ -154,23 +147,21 @@ app.post("/events/post", (req, res) => {
 ///Endpunkt 3
 app.delete("/events/delete/:index", (req, res) => {
   if (!events) return res.status(404).send("Event data could not be found.");
-  if (events.length === 0) return res.status(404).send("There are no bananas");
+  if (events.length === 0) return res.status(404).send("There are no events to delete.");
 
   let { index } = req.params;
-  const { userName, password } = req.body;
+  const { username, password } = req.body;
 
   //let userNameValue = document.getElementById('username').value;
   //console.log(userNameValue);
 
-  if (!userName || !password || !login(userName, password))
+  if (!username || !password || !login(username, password))
     return res.status(401).send("Invalid login.");
 
   if (index === "last" || index === "-1") index = events.length - 1;
 
   if (!events[index])
-    return res
-      .status(404)
-      .send("An event with index: " + index + " does not exist.");
+    return res.status(404).send("An event with index: " + index + " does not exist.");
 
   const deletedEvent = events.splice(index, 1);
 
@@ -191,9 +182,7 @@ app.patch("/events/patch/:index", (req, res) => {
   let { index } = req.params;
   if (index === "last" || index === "-1") index = events.length - 1;
   if (!events[index])
-    return res
-      .status(404)
-      .send("An event with index: " + index + " does not exist.");
+    return res.status(404).send("An event with index: " + index + " does not exist.");
 
   for (const key in req.body) {
     if (!eventKeys.includes(key)) continue;
