@@ -7,16 +7,17 @@ class HTTP {
                 'Content-type': 'application/json'
             }
         };
-        if (body) HTTPRequest.body = body;
+        if (body) HTTPRequest.body = JSON.stringify(body);
         const response = await fetch(url, HTTPRequest);
-        console.log("The following request was sent to ",url.trim(),":\n",HTTPRequest,"\n\n\nThe response was:\n",response);
+        console.log("The following request was sent to ",url.trim(),":\n",HTTPRequest,"\n\nThe response was:\n",response);
+        if (!response.ok) console.error("Response error:\n",await response.text());
         return response;
     }
 
     delete = async (url) => this.request("DELETE",url);
     get = async (url) => this.request("GET",url);
-    patch = async (url,body) => this.request("PATCH",url,JSON.stringify(body));
-    post = async (url,body) => this.request("POST",url,JSON.stringify(body));
+    patch = async (url,body) => this.request("PATCH",url,body);
+    post = async (url,body) => this.request("POST",url,body);
 
 }
 
@@ -36,12 +37,24 @@ deleteEventButton.addEventListener("click",deleteEvent);
 const updateEventButton = document.querySelector("#update-event-button"); 
 updateEventButton.addEventListener("click",updateEvent);
 
+const previewImageButtons = document.querySelectorAll(".preview-image-button")
+for (const button of previewImageButtons) {
+    button.addEventListener("click",previewImage)
+};
+
+function previewImage(e) {
+    const inputLink = e.target.parentElement.querySelector("input").value;
+    if (!inputLink) return e.preventDefault();
+    e.target.href = inputLink;
+}
+
+
 async function deleteEvent(e) {
     e.preventDefault();
     if (!firstEventDisplayed) return console.error("No event selected yet.");
     const eventSelector = document.querySelector("#index-input");
     const response = await http.delete("http://localhost:8080/events/delete/"+eventSelector.value);
-    if (response.status<300&&response.status>199) console.log("DELETION SUCESSFULL");
+    if (response.ok) console.log("DELETION SUCESSFULL");
 }
 
 async function updateEvent(e) {
