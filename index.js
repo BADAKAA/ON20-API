@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const PORT = 8080;
 app.use(express.json(),express.static("./"))
+const credentials = require("./credentials.json");
+
 
 const cors = require('cors');
 app.use(cors({
@@ -9,6 +11,7 @@ app.use(cors({
 }));
 const fs = require("fs");
 const events = require("./event-data.json");
+const { Hash } = require("crypto");
 
 const eventKeys = events[0] ? Object.keys(events[0]) : ["title","date","start","end","city","country","location","adress","description","image"]
 console.log("Event Keys:",eventKeys);
@@ -17,6 +20,17 @@ function saveData() {
   const eventsToBeSaved = JSON.stringify(events, null, 2);
   fs.writeFileSync("./event-data.json", eventsToBeSaved, () => console.log("Data written to file."));
 }
+
+const crypto = require('crypto');
+const getHash = (password) => crypto.createHash('sha256').update(password+credentials.salt).digest('hex');
+const login = (userName, password) => credentials.users[getHash(password)] === userName ? true : false;
+
+function addUser(password, userName) {
+  credentials.users[getHash(password)] = userName;
+  fs.writeFileSync("./credentials.json", JSON.stringify(credentials, null, 2), () => console.log("User added."));
+}
+
+//addUser(123, "admin");
 
 app.listen(
   PORT,
@@ -95,6 +109,14 @@ app.delete("/events/delete/:index", (req, res) => {
   if (events.length === 0) return res.status(404).send("There are no bananas");
 
   let { index } = req.params;
+  const {userName, password} = req.body;
+
+  //let userNameValue = document.getElementById('username').value;
+  //console.log(userNameValue);
+
+
+
+  if(!userName || !password ||!login(userName, password)) return res.status(401).send("Invalid login.");
 
   if (index === "last" || index === "-1") index = events.length - 1;
 

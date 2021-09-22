@@ -5,13 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "w":"concurrently --kill-others \"sass --watch ./website/admin/style:./website/admin/\" \"node .\" "
+    "w": "concurrently --kill-others \"sass --watch ./website/admin/style:./website/admin/\" \"node .\" "
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^6.2.1",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "sass": "^1.42.1",
+    "swagger-ui-express": "^4.1.6"
   }
 }
