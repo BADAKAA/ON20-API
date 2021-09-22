@@ -115,7 +115,7 @@ async function deleteEvent(e) {
     const eventSelector = document.querySelector("#index-input");
     const response = await http.delete("http://localhost:8080/events/delete/"+eventSelector.value,loginData);
     updatePreview();
-    if (response.ok) console.log("DELETION SUCESSFULL");
+    if (response.ok) console.log("Deletion successful.");
 }
 
 async function updateEvent(e) {
