@@ -5,7 +5,8 @@ app.use(express.json(), express.static("./"));
 const credentials = require("./credentials.json");
 
 //const swaggerUi = require("swagger-ui-express");
-//const swaggerFile = require("./swagger_output.json");
+const swaggerFile = require("./swagger_output.json");
+
 
 const cors = require("cors");
 app.use(
@@ -45,7 +46,15 @@ function addUser(password, userName) {
 app.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)
 );
+//SWAGGER
+app.get("/swagger",  (req, res) => {
+  console.log(swaggerFile);
+  return res.status(200).send(swaggerFile);
+});
 
+app.get("/website",  (req, res) => {
+  return res.status(200).sendFile("./website",);
+});
 // LOGIN
 
 app.post("/login", (req, res)=> {

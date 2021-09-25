@@ -17,7 +17,6 @@ const toBase64 = file => new Promise((resolve, reject) => {
 
 // HTTP REQUEST HELPER CLASS
 class HTTP {
-
     async request(method, url, body,auth) {
         const HTTPRequest = {
             method: method,
@@ -40,7 +39,6 @@ class HTTP {
     get = async (url) => this.request("GET", url);
     patch = async (url, body) => this.request("PATCH", url, body);
     post = async (url, body) => this.request("POST", url, body);
-
 }
 
 const http = new HTTP();
