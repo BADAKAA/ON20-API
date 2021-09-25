@@ -207,15 +207,16 @@
             <h2>Bild hinzufügen</h2>
             <ul>
                 <li class="center-vertical">
-                    Datei
                     <label for="image-file-input" class="custom-upload">
-                        <i class="bi bi-upload"></i> Bild auswählen
-                        <input type="file" accept="image/png,image/x-png, image/jpeg, image/gif,.gif" id="image-file-input" name="image-file-input">
+                        <span class="description">
+                            <i class="bi bi-upload"></i> Bild auswählen
+                        </span>
+                        <input required type="file" accept="image/png,image/x-png, image/jpeg, image/gif,.gif" id="image-file-input" name="image-file-input">
+                        <span for="image-file-input" id="uploaded-image-name">Keine Datei ausgewählt</span>
                     </label>
-                    <label for="image-file-input" id="uploaded-image-name">Keine Datei ausgewählt</label>
                 </li>
                 <li>
-                    <button class="upload-image" id="upload-image-button">Bild hochladen</button>
+                    <button class="upload-image" id="upload-image-button" >Bild hochladen</button>
                 </li>
             </ul>
         </form>

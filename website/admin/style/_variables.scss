@@ -7,4 +7,7 @@
 
     --login-colour: var(--light-blue);
     --body-padding: 3rem;
+    @media screen and (max-width:1000px) {
+        --body-padding: 1rem;
+    }
 }

@@ -60,3 +60,8 @@ button {
         }
     }
 }
+
+
+#image-file-input:invalid ~ #uploaded-image-name {
+    opacity: 0.4;
+}

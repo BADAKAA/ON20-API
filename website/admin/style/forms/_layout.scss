@@ -6,16 +6,9 @@
     flex-wrap: wrap;
     & > * {
         flex: 1 1 600px;
-        @media (min-width:2000px) {
-            li.center-vertical {
-                label:not(:last-child){
-                    margin-left: auto;
-                }
-                label:last-child {
-                    margin-right: auto;
-                }
-        }
-        }
+    }
+    li.center-vertical {
+        justify-content: center;
     }
     @media (max-width:1000px) {
         flex-direction: column;

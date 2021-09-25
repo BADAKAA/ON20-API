@@ -7,6 +7,11 @@
   --login-colour: var(--light-blue);
   --body-padding: 3rem;
 }
+@media screen and (max-width: 1000px) {
+  :root {
+    --body-padding: 1rem;
+  }
+}
 
 .login {
   display: flex;
@@ -213,13 +218,8 @@ input {
 .forms > * {
   flex: 1 1 600px;
 }
-@media (min-width: 2000px) {
-  .forms > * li.center-vertical label:not(:last-child) {
-    margin-left: auto;
-  }
-  .forms > * li.center-vertical label:last-child {
-    margin-right: auto;
-  }
+.forms li.center-vertical {
+  justify-content: center;
 }
 @media (max-width: 1000px) {
   .forms {
@@ -366,11 +366,15 @@ button:active {
   place-items: center;
 }
 
+#image-file-input:invalid ~ #uploaded-image-name {
+  opacity: 0.4;
+}
+
 #image-preview {
   max-width: 100%;
 }
 
-label.custom-upload {
+label.custom-upload .description {
   margin-left: 2rem;
   padding: 0.5rem;
   cursor: pointer;

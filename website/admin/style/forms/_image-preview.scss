@@ -2,10 +2,12 @@
     max-width: 100%;
 }
 label.custom-upload {
-    margin-left: 2rem;
-    padding: 0.5rem;
-    cursor: pointer;
-    border: 1px solid lightgray;
+    .description {
+        margin-left: 2rem;
+        padding: 0.5rem;
+        cursor: pointer;
+        border: 1px solid lightgray;
+    }
     input[type=file] {
         display: none;
     }
