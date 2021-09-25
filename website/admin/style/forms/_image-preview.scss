@@ -1,0 +1,39 @@
+#image-preview {
+    max-width: 100%;
+}
+
+.index-buttons {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+
+    .update-index-button {
+        width:1.5rem;
+        height: 1.5rem;
+        margin-left: 0.5rem;
+        background: var(--blue);
+        color: white;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        i {
+            pointer-events: none;
+            display: grid;
+            place-items: center;
+        }
+    }
+}
+label.custom-upload {
+    margin-left: 2rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    border: 1px solid lightgray;
+    input[type=file] {
+        display: none;
+    }
+}
+.center-vertical  {
+    display: flex;
+    align-items: center;
+}

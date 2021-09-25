@@ -1,7 +1,7 @@
 body {
     margin:0;
     min-height: 100vh;
-    padding: 0 3rem 0 3rem;
+    padding: 0 var(--body-padding) 0 var(--body-padding);
 }
 * {
     font-family: 'Lexend','Mulish','Roboto','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -17,8 +17,17 @@ body {
     font-size: 42pt;
 }
 header{
-    width: 100%;
-    position: relative;
+    width: 100vw;
+    max-width: 100vw;
+    z-index: 1;
+    background-color: white;
+    position: sticky;
+    top:0;
+    left:0;
+    margin-left: calc(-1 * var(--body-padding));
+    margin-right: calc(-1 * var(--body-padding));
+    overflow: hidden;
+    padding: 0 var(--body-padding) 0 var(--body-padding);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -44,5 +53,9 @@ a {
 
 input {
     padding-right: 1rem;
+}
+.center {
+    display: flex;
+    justify-content: center;
 }
 

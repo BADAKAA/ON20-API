@@ -1,4 +1,12 @@
-POST http://localhost:8080/iamges/upload HTTP/1.1
+DELETE http://localhost:8080/images/delete/undraw_Website_setup_re_d4y9.png HTTP/1.1
+content-type: application/json
+
+{
+    "username":"admin",
+    "password":"065002272987729a524ed2274f01bd1046a173053a360c7f9170cfa76a3d1727"
+}
+###
+POST http://localhost:8080/images/upload HTTP/1.1
 content-type: application/json
 
 {
@@ -7,6 +15,13 @@ content-type: application/json
 }
 ###
 GET http://localhost:8080/events/40
+###
+GET http://localhost:8080/hash HTTP/1.1
+content-type: application/json
+
+{
+    "input":"ihaspdisd"
+}
 ###
 POST http://localhost:8080/events/post HTTP/1.1
 content-type: application/json

@@ -4,7 +4,8 @@
   --blue:#0D2C54;
   --light-blue:#00A6ED;
   --orange: #FFB400;
-  --login-colour: var(--light-blue) ;
+  --login-colour: var(--light-blue);
+  --body-padding: 3rem;
 }
 
 .login {
@@ -88,10 +89,51 @@
   opacity: 1;
 }
 
+#menu-icon {
+  z-index: 2;
+  font-size: 2rem;
+  margin: auto;
+  margin-right: 0;
+  display: none;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+#menu-icon:hover:not(:active) {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 1000px) {
+  .login {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+  }
+  .login.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .login input {
+    margin-right: 2rem;
+  }
+
+  #menu-icon {
+    display: block;
+  }
+}
 body {
   margin: 0;
   min-height: 100vh;
-  padding: 0 3rem 0 3rem;
+  padding: 0 var(--body-padding) 0 var(--body-padding);
 }
 
 * {
@@ -111,8 +153,17 @@ body {
 }
 
 header {
-  width: 100%;
-  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  z-index: 1;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  left: 0;
+  margin-left: calc(-1 * var(--body-padding));
+  margin-right: calc(-1 * var(--body-padding));
+  overflow: hidden;
+  padding: 0 var(--body-padding) 0 var(--body-padding);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -140,6 +191,11 @@ a {
 
 input {
   padding-right: 1rem;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
 }
 
 .forms {
@@ -238,7 +294,20 @@ button:active {
 .delete label:not(.active) {
   opacity: 0.5;
 }
-.delete button {
+
+.two-buttons {
+  gap: 2rem;
+}
+
+#delete-event-button, #delete-image-button {
+  background-color: var(--red);
+}
+
+#update-event-button, #rename-image-button {
+  background-color: var(--light-blue);
+}
+
+.delete button, #upload-image-button {
   text-transform: uppercase;
   background-color: var(--blue);
   border: none;
@@ -247,23 +316,61 @@ button:active {
   width: 100%;
 }
 
-.two-buttons {
-  gap: 2rem;
+.preview-image-input:not(#image-name-input) {
+  pointer-events: none;
 }
 
-#delete-event-button {
-  background-color: var(--red);
-}
-
-#update-event-button {
-  background-color: var(--light-blue);
-}
-
-.preview-image-button {
+.preview-image-button, .copy-url-button {
   position: absolute;
   right: 1rem;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+#image-preview {
+  max-width: 100%;
+}
+
+.index-buttons {
+  position: absolute;
+  right: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.index-buttons .update-index-button {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 0.5rem;
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+}
+.index-buttons .update-index-button i {
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+}
+
+label.custom-upload {
+  margin-left: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  border: 1px solid lightgray;
+}
+label.custom-upload input[type=file] {
+  display: none;
+}
+
+.center-vertical {
+  display: flex;
+  align-items: center;
 }
 
 /*# sourceMappingURL=style.css.map */

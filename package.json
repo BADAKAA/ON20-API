@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "w": "concurrently --kill-others \"sass --watch ./website/admin/style:./website/admin/\" \"node .\" "
+    "w": "concurrently --kill-others \"sass --watch ./website/admin/style:./website/admin/\" \"npx nodemon\" "
   },
   "keywords": [],
   "author": "",
@@ -17,5 +17,8 @@
     "express": "^4.17.1",
     "sass": "^1.42.1",
     "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }

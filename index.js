@@ -15,23 +15,8 @@ app.use(
 );
 const fs = require("fs");
 const events = require("./event-data.json");
-const { Hash } = require("crypto");
 
-const eventKeys = events[0]
-  ? Object.keys(events[0])
-  : [
-    "title",
-    "date",
-    "start",
-    "end",
-    "city",
-    "country",
-    "location",
-    "adress",
-    "description",
-    "image",
-  ];
-console.log("Event Keys:", eventKeys);
+const eventKeys = events[0] ? Object.keys(events[0]) : ["title","date","start","end","city","country","location","adress","description","image"];
 
 function saveData() {
   const eventsToBeSaved = JSON.stringify(events, null, 2);
@@ -40,7 +25,7 @@ function saveData() {
   );
 }
 
-const getUser = (password) => credentials.users[getHash(password)];
+const getUser = (password) => credentials.users[password];
 
 const crypto = require("crypto");
 const getHash = (password) => crypto.createHash("sha256").update(password + credentials.salt).digest("hex");
@@ -66,6 +51,11 @@ app.listen(PORT, () =>
 app.post("/login", (req, res)=> {
   const {username,password} = req.body;
   login(username,password) ? res.status(200).send("Login is valid.") : res.status(401).send("Invalid Login.");
+});
+
+app.post("/hash", (req, res)=> {
+  const {input} = req.body;
+  input ? res.status(200).send(getHash(input)) : res.status(400).send("Please include the value 'input' in your request body.");
 })
 ///EVENT DATA BASE
 app.get("/events", async (req, res) => {
@@ -85,17 +75,39 @@ app.get("/images/:filename", (req, res) => {
   const { filename } = req.params;
   res.status(200).sendFile(`/images/${filename}`, { root: __dirname });
 });
+app.delete("/images/delete/:filename", (req, res) => {
+  const { filename } = req.params;
+  const auth = req.headers.authorization;
+  const username = auth.split(".")[0];
+  const password = auth.split(".")[1];
+  if (!username || !password || !login(username, password)) return res.status(401).send("Invalid login.")
+  fs.unlink(`./images/${filename}`,err => {
+    err ? res.status(400).send(err) : res.status(200).send("Deletion successful.")
+  })
+});
+app.patch("/images/rename/", (req, res) => {
+  const { oldName, newName } = req.body;
+  if (!oldName || !newName) return res.status(400).send("Please specify the properties 'oldName' and 'newName' in the HTML body.")
+  fs.rename(`./images/${oldName}`,`./images/${newName}`,err => {
+    err ? res.status(400).send(err) : res.status(200).send("Renaming successful.")
+  })
+});
+
+app.get("/imageByIndex/:index", (req, res) => {
+  const { index } = req.params;
+  fs.readdir("./images", (err, files) => {
+    if (err) return res.status(404).send(err);
+    files && files[index] ? res.status(200).sendFile(`/images/${files[index]}`, { root: __dirname }) : res.status(404).send(`An image with index '${index}' could not be found.`);
+  });
+});
 
 app.post("/images/upload/", (req, res) => {
-  const { filename, data, encoding } = req.body;
-  fs.existsSync(`./images/${filename}`, (exists) => {
-    if (exists)
-      return res
-        .status(409)
-        .send(`An image with the name '${filename}' already exists.`);
+  const { name, data } = req.body;
+  fs.existsSync(`./images/${name}`, (exists) => {
+    if (exists) return res.status(409).send(`An image with the name '${name}' already exists.`);
   });
-  fs.writeFile(`./images/${filename}`, encoding + data, (err) => {
-    console.log(err);
+  fs.writeFile(`./images/${name}`, data, (err) => {
+    if (err) console.log(err);
     err ? res.status(400).send(err) : res.status(200).send("File sucessfully uploaded.");
   });
 });
@@ -123,10 +135,7 @@ app.post("/events/post", (req, res) => {
   for (const key of eventKeys) {
     if (!newEvent[key])
       return res.status(418).send({
-          message:
-            "Please make sure the event contains the following data:" +
-            Object.keys(events[0]) +
-            "!",
+          message: "Please make sure the event contains the following data:" + Object.keys(events[0]) + "!",
         });
   }
   //Fehlerbehandlung 2 die prüft, ob ein Event mit dem Index bereits vorhanden ist
@@ -150,18 +159,18 @@ app.delete("/events/delete/:index", (req, res) => {
   if (events.length === 0) return res.status(404).send("There are no events to delete.");
 
   let { index } = req.params;
-  const { username, password } = req.body;
+  // https://stackoverflow.com/a/5957629
+  const header = req.headers.authorization || ''; 
+  const token = header.split(/\s+/).pop() || ''
+  const auth = Buffer.from(token, 'base64').toString();
+  const username = auth.split(":")[0];
+  const password = auth.split(":")[1];
 
-  //let userNameValue = document.getElementById('username').value;
-  //console.log(userNameValue);
-
-  if (!username || !password || !login(username, password))
-    return res.status(401).send("Invalid login.");
+  if (!username || !password || !login(username, password)) return res.status(401).send("Invalid login.");
 
   if (index === "last" || index === "-1") index = events.length - 1;
 
-  if (!events[index])
-    return res.status(404).send("An event with index: " + index + " does not exist.");
+  if (!events[index]) return res.status(404).send("An event with index: " + index + " does not exist.");
 
   const deletedEvent = events.splice(index, 1);
 

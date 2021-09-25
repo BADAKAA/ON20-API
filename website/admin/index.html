@@ -23,6 +23,7 @@
         <h1 class="title">
             <nobr><a href="../"> <i class="bi bi-house"></i> Eventist</nobr></a>
         </h1>
+        <i class="bi bi-list" id="menu-icon"></i>
         <div class="login" id="login-container">
             <div class="input-container">
                 <i class="bi bi-person-fill icon"></i>
@@ -44,7 +45,6 @@
         <p id="error-message"></p>
     </header>
     <div class="forms">
-
         <form>
             <h2>Event erstellen</h2>
             <ul>
@@ -90,10 +90,12 @@
                     ></textarea>
                 </li>
                 <li>
-                    <a class="preview-image-button" href="#" target="_blank"><i class="bi bi-images"></i></a>
                     <label for="image">Bild (URL)</label>
-                    <input class="add-event-input" type="url" id="image" name="image"
+                    <div class="container">
+                        <a class="preview-image-button" href="#" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a>
+                        <input class="add-event-input" type="url" id="image" name="image"
                         placeholder="https://images.unsplash.com/photo-1540575467063">
+                    </div>
                 </li>
 
                 <li>
@@ -149,14 +151,65 @@
                     <textarea class="preview-event-input" type="text" id="preview-description" name="description"></textarea>
                 </li>
                 <li>
-                    <a class="preview-image-button" href="#" target="_blank"><i class="bi bi-images"></i></a>
                     <label>Bild (URL)</label>
-                    <input class="preview-event-input" type="text" id="preview-image" name="image">
+                    <div class="container">
+                        <a class="preview-image-button" href="#" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a>
+                        <input class="preview-event-input" type="text" name="image">
+                    </div>
                 </li>
 
                 <li class="two-buttons">
                     <input type="submit" id="update-event-button" value="EVENT AKTUALISIEREN">
                     <input type="submit" id="delete-event-button"value="EVENT LÖSCHEN">
+                </li>
+            </ul>
+        </form>
+        <form>
+            <h2>Bilder verwalten</h2>
+            <ul>
+                <li>
+                    <label for="image-index-input" class="active">Index</label>
+                    <div class="container">
+                        <input value="0" type="number" id="image-index-input" name="index">
+                        <div class="index-buttons">
+                            <button class="update-index-button previous"><i class="bi bi-dash"></i></button>
+                            <button class="update-index-button next" ><i class="bi bi-plus"></i></button>
+                        </div>
+                    </div>
+                </li>
+                <li >
+                    <label>Name</label>
+                    <input class="preview-image-input" id="image-name-input" type="text" name="image">
+                </li>
+                <li>
+                    <label>Bild (URL)</label>
+                    <div class="container">
+                        <a class="copy-url-button" href="#" target="_blank"><i class="bi bi-files"></i></a>
+                        <input class="preview-image-input" id="image-url-input" type="text" name="image">
+                    </div>  
+                </li>
+                <li class="center">
+                    <img id="image-preview" src="" alt="The currently selected image.">
+                </li>
+                <li class="two-buttons">
+                    <input type="submit" id="rename-image-button" value="BILD UMBENENNEN">
+                    <input type="submit" id="delete-image-button" value="BILD LÖSCHEN">
+                </li>
+            </ul>
+        </form>
+        <form>
+            <h2>Bilder hinzufügen</h2>
+            <ul>
+                <li class="center-vertical">
+                    Datei
+                    <label for="image-file-input" class="custom-upload">
+                        <i class="bi bi-upload"></i> Bild auswählen
+                        <input type="file" accept="image/png, image/jpeg" id="image-file-input" name="image-file-input">
+
+                    </label>
+                </li>
+                <li>
+                    <button class="upload-image" id="upload-image-button">Bild hochladen</button>
                 </li>
             </ul>
         </form>
