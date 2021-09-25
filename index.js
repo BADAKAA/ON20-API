@@ -106,7 +106,10 @@ app.post("/images/upload/", (req, res) => {
   fs.existsSync(`./images/${name}`, (exists) => {
     if (exists) return res.status(409).send(`An image with the name '${name}' already exists.`);
   });
-  fs.writeFile(`./images/${name}`, data, (err) => {
+  // https://stackoverflow.com/a/43488020
+  const image = data.replace(/^data:image\/\w+;base64,/, "");
+  const buf = Buffer.from(image, 'base64');
+  fs.writeFile(`./images/${name}`, buf, (err) => {
     if (err) console.log(err);
     err ? res.status(400).send(err) : res.status(200).send("File sucessfully uploaded.");
   });

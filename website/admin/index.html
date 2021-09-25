@@ -154,7 +154,7 @@
                     <label>Bild (URL)</label>
                     <div class="container">
                         <a class="preview-image-button" href="#" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a>
-                        <input class="preview-event-input" type="text" name="image">
+                        <input class="preview-event-input" type="url" name="image">
                     </div>
                 </li>
 
@@ -185,7 +185,7 @@
                     <label>Bild (URL)</label>
                     <div class="container">
                         <a class="copy-url-button" href="#" target="_blank"><i class="bi bi-files"></i></a>
-                        <input class="preview-image-input" id="image-url-input" type="text" name="image">
+                        <input class="preview-image-input" id="image-url-input" type="url" name="image">
                     </div>  
                 </li>
                 <li class="center">
@@ -205,8 +205,8 @@
                     <label for="image-file-input" class="custom-upload">
                         <i class="bi bi-upload"></i> Bild auswählen
                         <input type="file" accept="image/png, image/jpeg" id="image-file-input" name="image-file-input">
-
                     </label>
+                    <label for="image-file-input" id="uploaded-image-name">Keine Datei ausgewählt</label>
                 </li>
                 <li>
                     <button class="upload-image" id="upload-image-button">Bild hochladen</button>

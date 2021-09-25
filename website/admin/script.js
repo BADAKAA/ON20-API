@@ -29,7 +29,10 @@ class HTTP {
         if (auth) HTTPRequest.headers["Authorization"] = 'Basic '+btoa(auth.username+":"+auth.password) 
         const response = await fetch(url, HTTPRequest);
         console.log("The following request was sent to ", url.trim(), ":\n", HTTPRequest, "\n\nThe response was:\n", response);
-        if (!response.ok) showError("Failed request: " + await response.text());
+        if (!response.ok) {
+            const error = await response.text()
+            showError("Failed request: " + (error[0]==="{" && JSON.parse(error).message || error));
+        }
         return response;
     }
 
@@ -93,7 +96,7 @@ logoutButton.addEventListener("click", logout);
 
 
 function showError(error) {
-    errorField.textContent = error.message || error;
+    errorField.textContent = error;
     clearInterval(errorTimeout)
     errorTimeout = setInterval(() => errorField.textContent = "", 5000)
 }
@@ -274,13 +277,19 @@ async function renameImage() {
 
 //IMAGE UPLOADING
 const imageFileInput = document.querySelector("#image-file-input");
-document.querySelector("#upload-image-button").addEventListener("input",uploadImage)
+imageFileInput.addEventListener("change",updateUploadedImageName);
+const uploadedImageNameElement = document.querySelector("#uploaded-image-name")
+document.querySelector("#upload-image-button").addEventListener("click",uploadImage)
 
-async function uploadImage() {
-    const image = imageFileInput.target.files[0]; 
+async function uploadImage(e) {
+    e.preventDefault();
+    const image = imageFileInput.files[0]; 
     const encoded = await toBase64(image);
-    console.log(encoded);
-    http.post(`${ApiUrl}images/upload/`,{name:image.name,data:encoded})
+    const response = await http.post(`${ApiUrl}images/upload/`,{name:image.name,data:encoded});
+    if (response.ok) showError("Upload successful.")
+}
+function updateUploadedImageName() {
+    uploadedImageNameElement.textContent = imageFileInput.files[0].name;
 }
 // Menu
 

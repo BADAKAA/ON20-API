@@ -51,11 +51,14 @@ input, textarea {
     border-radius: 0px;
     min-height: 2rem;
     transition: box-shadow 0.3s;
-    &:hover,&:focus {
+    &:hover,&:focus:not([type="submit"]) {
         box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
     }
     &:not(:focus) {
         cursor: pointer;
+    }
+    &[type="url"] {
+        padding-right: 3rem;
     }
 }
 textarea {

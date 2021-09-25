@@ -256,11 +256,14 @@ input, textarea {
   min-height: 2rem;
   transition: box-shadow 0.3s;
 }
-input:hover, input:focus, textarea:hover, textarea:focus {
+input:hover, input:focus:not([type=submit]), textarea:hover, textarea:focus:not([type=submit]) {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
 input:not(:focus), textarea:not(:focus) {
   cursor: pointer;
+}
+input[type=url], textarea[type=url] {
+  padding-right: 3rem;
 }
 
 textarea {
@@ -371,6 +374,11 @@ label.custom-upload input[type=file] {
 .center-vertical {
   display: flex;
   align-items: center;
+}
+
+#uploaded-image-name {
+  margin-left: 1rem;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */
