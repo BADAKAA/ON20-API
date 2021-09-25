@@ -36,7 +36,7 @@
     input {
         margin: 0;
         border: 1px solid #bbb;
-        &:hover,&:focus {
+        &:hover,&:focus:not([type="submit"]) {
             box-shadow: none;
         }
     }

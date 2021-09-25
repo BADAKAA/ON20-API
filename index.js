@@ -1,12 +1,8 @@
 const express = require("express");
 const app = express();
 const PORT = 8080;
-app.use(express.json(), express.static("./"));
+app.use(express.json({limit: '10mb'}), express.static("./"));
 const credentials = require("./credentials.json");
-
-//const swaggerUi = require("swagger-ui-express");
-const swaggerFile = require("./swagger_output.json");
-
 
 const cors = require("cors");
 app.use(
@@ -14,6 +10,11 @@ app.use(
     origin: "*",
   })
 );
+
+app.listen(PORT, () =>
+  console.log(`Server running on http://localhost:${PORT}`)
+);
+
 const fs = require("fs");
 const events = require("./event-data.json");
 
@@ -32,6 +33,18 @@ const crypto = require("crypto");
 const getHash = (password) => crypto.createHash("sha256").update(password + credentials.salt).digest("hex");
 const login = (username, password) => (getUser(password) && getUser(password) == username) ? true : false;
 
+function authorizationValid(request) {
+    // https://stackoverflow.com/a/5957629
+    const header = request.headers.authorization || ''; 
+    const token = header.split(/\s+/).pop() || ''
+    const auth = Buffer.from(token, 'base64').toString();
+    const username = auth.split(":")[0];
+    const password = auth.split(":")[1];
+  
+    if (!username || !password || !login(username, password)) return false;
+    return true;
+}
+
 function addUser(password, userName) {
   credentials.users[getHash(password)] = userName;
   fs.writeFileSync(
@@ -43,18 +56,6 @@ function addUser(password, userName) {
 
 //addUser(123, "admin");
 
-app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
-);
-//SWAGGER
-app.get("/swagger",  (req, res) => {
-  console.log(swaggerFile);
-  return res.status(200).send(swaggerFile);
-});
-
-app.get("/website",  (req, res) => {
-  return res.status(200).sendFile("./website",);
-});
 // LOGIN
 
 app.post("/login", (req, res)=> {
@@ -69,7 +70,7 @@ app.post("/hash", (req, res)=> {
 ///EVENT DATA BASE
 app.get("/events", async (req, res) => {
   if (events) return res.status(200).send(events);
-  res.status(400).send("No data could be found.");
+  res.status(404).send("No data could be found.");
 });
 
 //IMAGES
@@ -86,10 +87,9 @@ app.get("/images/:filename", (req, res) => {
 });
 app.delete("/images/delete/:filename", (req, res) => {
   const { filename } = req.params;
-  const auth = req.headers.authorization;
-  const username = auth.split(".")[0];
-  const password = auth.split(".")[1];
-  if (!username || !password || !login(username, password)) return res.status(401).send("Invalid login.")
+
+  if (!authorizationValid(req)) return res.status(401).send("Invalid login.");
+
   fs.unlink(`./images/${filename}`,err => {
     err ? res.status(400).send(err) : res.status(200).send("Deletion successful.")
   })
@@ -170,16 +170,9 @@ app.delete("/events/delete/:index", (req, res) => {
   if (!events) return res.status(404).send("Event data could not be found.");
   if (events.length === 0) return res.status(404).send("There are no events to delete.");
 
+  if (!authorizationValid(req)) return res.status(401).send("Invalid login.");
+  
   let { index } = req.params;
-  // https://stackoverflow.com/a/5957629
-  const header = req.headers.authorization || ''; 
-  const token = header.split(/\s+/).pop() || ''
-  const auth = Buffer.from(token, 'base64').toString();
-  const username = auth.split(":")[0];
-  const password = auth.split(":")[1];
-
-  if (!username || !password || !login(username, password)) return res.status(401).send("Invalid login.");
-
   if (index === "last" || index === "-1") index = events.length - 1;
 
   if (!events[index]) return res.status(404).send("An event with index: " + index + " does not exist.");

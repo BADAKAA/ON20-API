@@ -1,0 +1,74 @@
+[
+    {
+      "title": "DJESSE WORLD TOUR | Jacob Collier",
+      "date": "2021-07-12",
+      "start": "19:30",
+      "end": "22:00",
+      "city": "Frankfurt",
+      "country": "Germany",
+      "location": "Batschkapp",
+      "adress": "Gwinnerstraße 5, 60388 Frankfurt am Main",
+      "description": "'I'm guessing that's about 32 cents flat ... 32 cents was correct.' Listen to Jacob Collier, a sassy, perfect-pitch-posessing musical prodigy, who ain't afraid to show his skills.  Jacob is also the first British artist to win an emmy for each of his first albums. Here he is, on an image taken by <a target='window_new'href='https://www.flickr.com/photos/diaz/25112230401'>Anton Diaz</a>. If you need any more convincing, just google and listen for yourself.",
+      "image": "http://localhost:8080/images/jacob-collier.jpg"
+    },
+    {
+      "title": "Ballroom Evening",
+      "date": "2022-08-02",
+      "start": "20:00",
+      "end": "",
+      "city": "Buchen",
+      "country": "Germany",
+      "location": "Stadthalle",
+      "adress": "Schützenstraße 1, 74722 Buchen",
+      "description": "Ballroom dance is a set of partner dances, which are enjoyed both socially and competitively around the world, mostly because of its performance and entertainment aspects. Ballroom dancing is also widely enjoyed on stage, film, and television.",
+      "image": "http://localhost:8080/images/unsplash-ballroom.jfif"
+    },
+    {
+      "title": "Cory Henry Live",
+      "date": "2022-01-31",
+      "start": "19:00",
+      "end": "21:30",
+      "city": "Berlin",
+      "country": "Germany",
+      "location": "Columbiahalle",
+      "adress": "Columbiadamm 13-21, 10965 Berlin",
+      "description": "Do ya like Jazz? Then ya gonna like Cory Henry! Do ya not like Jazz? Listen to him anyway! He is an American R&B/Soul singer-songwriter, pianist, organist, and music producer. A former member of Snarky Puppy, Henry launched his solo artist career with Art of Love, his first independent release.",
+      "image": "http://localhost:8080/images/CoryHenryTheFunkApostles.jpg"
+    },
+    {
+      "title": "Rhetoric Mastery Seminar",
+      "date": "2021-12-14",
+      "start": "09:00",
+      "end": "11:30",
+      "city": "Munich",
+      "country": "Germany",
+      "location": "Neues Rathaus",
+      "adress": "Marienplatz 8, 80331 München",
+      "description": "Rhetoric aims to study the techniques writers or speakers utilize to inform, persuade, or motivate particular audiences in specific situations. Aristotle defines rhetoric as 'the faculty of observing in any given case the available means of persuasion' and since mastery of the art was necessary for victory in a case at law, for passage of proposals in the assembly, or for fame as a speaker in civic ceremonies; he calls it 'a combination of the science of logic and of the ethical branch of politics'.",
+      "image": "http://localhost:8080/images/unsplash-seminar.jpg"
+    },
+    {
+      "title": "Democracy in the Age of Big Data and AI",
+      "date": "2021-09-16",
+      "start": "17:00",
+      "end": "20:00",
+      "city": "London",
+      "country": "Great Britain",
+      "location": "Lyceum Theatre",
+      "adress": "21 Wellington St, London WC2E 7RQ, United Kingdom",
+      "description": "Amy Webb, futurist, NYU professor, and award-winning author, has spent much of the last decade researching, discussing, and meeting with people and organizations about artificial intelligence. “We’ve reached a fever pitch in all things AI,” she says. Now it’s time to step back to see where it’s going.<br><a target='window_new' href='https://www.technologyreview.com/2019/02/26/66043/why-ai-is-a-threat-to-democracyand-what-we-can-do-to-stop-it/'>Read more</a>",
+      "image": "http://localhost:8080/images/unsplash-election.jpg"
+    },
+    {
+      "title": "How to use Stencil without needing therapy",
+      "date": "2022-05-07",
+      "start": "15:00",
+      "end": "18:00",
+      "city": "Brighton",
+      "country": "Great Britain",
+      "location": "University of Sussex",
+      "adress": "Falmer, Brighton BN1 9RH",
+      "description": "Recent studies reveal: Stencil.js programming has now surpassed TypeScript as the number one leading cause of death among ON20 students. Visit this event to find out how to write Stencil code without wanting to hurt yourself. Just kidding, doing that is of course impossible. This is just a self-help group for dealing with stencil-related PTSD. <a target='window_new 'href='https://entwicklergate.de/t/lustige-entwickler-programmierer-memes/371/'>Get help</a>",
+      "image": "http://localhost:8080/images/unsplash-therapy.jpg"
+    }
+  ]

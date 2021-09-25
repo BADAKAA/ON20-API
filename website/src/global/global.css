@@ -1,6 +1,6 @@
 :root {
     --custom-black: #100B00;
-    --custom-white:#FFFCF9;
+    --custom-white:white;
     --primary:#941C2F;
 }
 body {

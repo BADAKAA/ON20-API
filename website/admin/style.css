@@ -48,7 +48,7 @@
   margin: 0;
   border: 1px solid #bbb;
 }
-.login input:hover, .login input:focus {
+.login input:hover, .login input:focus:not([type=submit]) {
   box-shadow: none;
 }
 .login > * {
@@ -165,6 +165,10 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  transition: box-shadow 0.3s;
+}
+header.stuck {
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 #error-message {
@@ -175,6 +179,9 @@ header {
   margin: 0;
   pointer-events: none;
   transform: translate(-50%, -150%);
+}
+#error-message.positive {
+  color: var(--green);
 }
 
 .icon {
@@ -206,6 +213,14 @@ input {
 .forms > * {
   flex: 1 1 600px;
 }
+@media (min-width: 2000px) {
+  .forms > * li.center-vertical label:not(:last-child) {
+    margin-left: auto;
+  }
+  .forms > * li.center-vertical label:last-child {
+    margin-right: auto;
+  }
+}
 @media (max-width: 1000px) {
   .forms {
     flex-direction: column;
@@ -224,6 +239,11 @@ form h2 {
 }
 form a i {
   pointer-events: none;
+}
+
+.container {
+  position: relative;
+  width: 100%;
 }
 
 ul {
@@ -277,8 +297,8 @@ input[type=submit] {
   color: white;
 }
 
-.error {
-  color: var(--red);
+.two-buttons {
+  gap: 2rem;
 }
 
 button {
@@ -294,10 +314,6 @@ button:active {
 
 .delete label:not(.active) {
   opacity: 0.5;
-}
-
-.two-buttons {
-  gap: 2rem;
 }
 
 #delete-event-button, #delete-image-button {
@@ -317,10 +333,6 @@ button:active {
   width: 100%;
 }
 
-.preview-image-input:not(#image-name-input) {
-  pointer-events: none;
-}
-
 .preview-image-button, .copy-url-button {
   position: absolute;
   right: 1rem;
@@ -328,18 +340,13 @@ button:active {
   transform: translateY(-50%);
 }
 
-.container {
-  position: relative;
-  width: 100%;
-}
-
-#image-preview {
-  max-width: 100%;
+#update-preview-button {
+  display: none;
 }
 
 .index-buttons {
   position: absolute;
-  right: 3rem;
+  right: 1rem;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -357,6 +364,10 @@ button:active {
   pointer-events: none;
   display: grid;
   place-items: center;
+}
+
+#image-preview {
+  max-width: 100%;
 }
 
 label.custom-upload {
@@ -377,6 +388,10 @@ label.custom-upload input[type=file] {
 #uploaded-image-name {
   margin-left: 1rem;
   cursor: pointer;
+}
+
+.preview-image-input:not(#image-name-input) {
+  pointer-events: none;
 }
 
 /*# sourceMappingURL=style.css.map */

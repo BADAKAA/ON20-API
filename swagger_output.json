@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Eventist API",
-    "description": "Description",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
   },
   "host": "localhost:3000",
   "basePath": "/",
@@ -14,30 +14,6 @@
   "consumes": [],
   "produces": [],
   "paths": {
-    "/swagger": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/website": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/login": {
       "post": {
         "tags": [],
@@ -106,8 +82,8 @@
           "200": {
             "description": "OK"
           },
-          "400": {
-            "description": "Bad Request"
+          "404": {
+            "description": "Not Found"
           }
         }
       }

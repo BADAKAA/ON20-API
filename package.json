@@ -15,8 +15,8 @@
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "express": "^4.17.1",
-    "sass": "^1.42.1",
-    "swagger-ui-dist": "^3.52.3"
+    "raw-body": "^2.4.1",
+    "sass": "^1.42.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.12",

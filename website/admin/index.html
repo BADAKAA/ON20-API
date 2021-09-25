@@ -108,7 +108,13 @@
             <ul>
                 <li>
                     <label for="index-input" class="active">Index</label>
-                    <input value="0" type="number" id="index-input" name="index">
+                    <div class="container">
+                        <input value="0" type="number" id="index-input" name="index">
+                        <div class="index-buttons">
+                            <button class="update-index-button previous"><i class="bi bi-dash"></i></button>
+                            <button class="update-index-button next" ><i class="bi bi-plus"></i></button>
+                        </div>
+                    </div>
                 </li>
                 <li>
                     <button class="update-preview" id="update-preview-button">EVENT ANZEIGEN</button>
@@ -165,7 +171,7 @@
             </ul>
         </form>
         <form>
-            <h2>Bilder verwalten</h2>
+            <h2>Bild verwalten</h2>
             <ul>
                 <li>
                     <label for="image-index-input" class="active">Index</label>
@@ -198,13 +204,13 @@
             </ul>
         </form>
         <form>
-            <h2>Bilder hinzufügen</h2>
+            <h2>Bild hinzufügen</h2>
             <ul>
                 <li class="center-vertical">
                     Datei
                     <label for="image-file-input" class="custom-upload">
                         <i class="bi bi-upload"></i> Bild auswählen
-                        <input type="file" accept="image/png, image/jpeg" id="image-file-input" name="image-file-input">
+                        <input type="file" accept="image/png,image/x-png, image/jpeg, image/gif,.gif" id="image-file-input" name="image-file-input">
                     </label>
                     <label for="image-file-input" id="uploaded-image-name">Keine Datei ausgewählt</label>
                 </li>

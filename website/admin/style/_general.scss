@@ -29,6 +29,10 @@ header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    transition: box-shadow 0.3s;
+    &.stuck {
+        box-shadow: 0px 5px 10px rgba(0,0,0,0.1);
+    }
 }
 
 #error-message {
@@ -39,6 +43,9 @@ header{
     margin: 0;
     pointer-events: none;
     transform: translate(-50%,-150%);
+    &.positive {
+        color:var(--green)  
+    }
 }
 .icon {
     height:3rem;
