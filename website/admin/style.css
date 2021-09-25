@@ -153,8 +153,6 @@ body {
 }
 
 header {
-  width: 100vw;
-  max-width: 100vw;
   z-index: 1;
   background-color: white;
   position: sticky;
