@@ -4,8 +4,8 @@ const PORT = 8080;
 app.use(express.json(), express.static("./"));
 const credentials = require("./credentials.json");
 
-const swaggerUi = require("swagger-ui-express");
-const swaggerFile = require("./swagger_output.json");
+//const swaggerUi = require("swagger-ui-express");
+//const swaggerFile = require("./swagger_output.json");
 
 const cors = require("cors");
 app.use(
