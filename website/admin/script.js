@@ -195,7 +195,7 @@ async function deleteEvent(e) {
     if (!firstEventDisplayed) return showMessage("No event selected yet.");
     const eventSelector = $("#index-input");
     const response = await http.delete(ApiUrl + "events/delete/" + eventSelector.value, null,loginData);
-    eventSelector.value = 0;
+    eventSelector.value--;
     updateEventPreview();
     if (response.ok) showMessage("Deletion successful.",true);
 }
@@ -213,7 +213,7 @@ async function updateEvent(e) {
     showMessage("Event updated successfully.",true)
 }
 
-function addEvent(e) {
+async function addEvent(e) {
     e.preventDefault();
     const inputs = document.querySelectorAll(".add-event-input");
     const values = {};
@@ -221,7 +221,7 @@ function addEvent(e) {
     for (const input of inputs) {
         values[input.id] = input.value;
     }
-    http.post(ApiUrl + "events/post", {
+    const response = await http.post(ApiUrl + "events/post", {
         title: values.title,
         date: values.date,
         start: values.start,
@@ -233,6 +233,12 @@ function addEvent(e) {
         description: values.description,
         image: values.image,
     });
+    if (response.ok) {
+        for (const input of inputs) {
+            input.value="";
+            showMessage("Event successfully added.",true)
+        }
+    }
 }
 
 
@@ -283,7 +289,7 @@ async function getCurrentImageName() {
 }
 let fileEnding = "";
 async function previewImage(filename) {
-    const imageName = filename || await getCurrentImageName();
+    const imageName = filename && typeof filename === "string" ? filename : await getCurrentImageName();
     if (!imageName) {
         showMessage("This image was not found.");
         return resetImagePreview();
