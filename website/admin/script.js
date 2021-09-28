@@ -300,6 +300,10 @@ async function previewImage(filename) {
     fileEnding = "."+parsedName.pop();
     imageNameInput.value = parsedName.join(".");
     previewImageElement.src = imageURL;
+    const imageRequest =  await http.get(ApiUrl+"images");
+    const images = await imageRequest.json()
+    const newIndex = images.indexOf(imageName);
+    if (newIndex!==-1) imageIndexInput.value = newIndex; 
 }
 async function deleteImage(e) {
     e.preventDefault();

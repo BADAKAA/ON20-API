@@ -33,7 +33,7 @@
     "location": "Columbiahalle",
     "adress": "Columbiadamm 13-21, 10965 Berlin",
     "description": "Do ya like Jazz? Then ya gonna like Cory Henry! Do ya not like Jazz? Listen to him anyway! He is an American R&B/Soul singer-songwriter, pianist, organist, and music producer. A former member of Snarky Puppy, Henry launched his solo artist career with Art of Love, his first independent release.",
-    "image": "http://localhost:8080/images/CoryHenryTheFunkApostles.jpg"
+    "image": "http://localhost:8080/images/CoryHenryTheFunkApostles.jfif"
   },
   {
     "title": "Rhetoric Mastery Seminar",
@@ -57,7 +57,7 @@
     "location": "Lyceum Theatre",
     "adress": "21 Wellington St, London WC2E 7RQ, United Kingdom",
     "description": "Amy Webb, futurist, NYU professor, and award-winning author, has spent much of the last decade researching, discussing, and meeting with people and organizations about artificial intelligence. “We’ve reached a fever pitch in all things AI,” she says. Now it’s time to step back to see where it’s going.<br><a target='window_new' href='https://www.technologyreview.com/2019/02/26/66043/why-ai-is-a-threat-to-democracyand-what-we-can-do-to-stop-it/'>Read more</a>",
-    "image": "http://localhost:8080/images/unsplash-election.jpg"
+    "image": "http://localhost:8080/images/unsplash-election.jfif"
   },
   {
     "title": "How to use Stencil without needing therapy",
