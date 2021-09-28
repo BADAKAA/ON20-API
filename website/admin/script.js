@@ -124,25 +124,22 @@ function logout() {
     if (loginContainer.classList.contains("logged-in")) loginContainer.classList.remove("logged-in");
 }
 
-async function loginRequest(username, password, alreadyHashed) {
+async function loginRequest(username, password) {
 
     const usernameInput = $("#username-input");
-    const passwordInput = $("#password-input")
+    const passwordInput = $("#password-input");
 
-    const newUserName = username || usernameInput?.value.trim();
-    const newPassword = password || passwordInput?.value.trim();
+    const newUserName = username && typeof username==="string" ? username : usernameInput?.value.trim();
+    const newPassword = password && typeof password==="string" ? password : passwordInput?.value.trim();
 
-    const hashRequest = await http.post(`${ApiUrl}hash`, { input: newPassword })
-    const hashedPassword = alreadyHashed ? newPassword : await hashRequest.text();
-
-    const response = await http.post(ApiUrl + "login", { username: newUserName, password: hashedPassword });
+    const response = await http.post(ApiUrl + "login", { username: newUserName, password: newPassword });
 
     logout();
 
     if (response.ok) {
         loggedIn = true;
         loginData.username = newUserName;
-        loginData.password = hashedPassword;
+        loginData.password = newPassword;
 
         loginContainer.classList.add("logged-in");
         localStorage.setItem("ON20-Event-API-preferences", JSON.stringify(loginData));
@@ -152,7 +149,7 @@ async function loginRequest(username, password, alreadyHashed) {
 
 function initalLogin() {
     const savedLogin = JSON.parse(localStorage.getItem("ON20-Event-API-preferences"));
-    if (savedLogin) loginRequest(savedLogin.username, savedLogin.password, true);
+    if (savedLogin) loginRequest(savedLogin.username, savedLogin.password);
 }
 
 function openImageInNewWindow(e) {

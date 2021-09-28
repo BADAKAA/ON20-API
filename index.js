@@ -31,7 +31,7 @@ const getUser = (password) => credentials.users[password];
 
 const crypto = require("crypto");
 const getHash = (password) => crypto.createHash("sha256").update(password + credentials.salt).digest("hex");
-const login = (username, password) => (getUser(password) && getUser(password) == username) ? true : false;
+const login = (username, password) => (getUser(getHash(password)) && getUser(getHash(password)) == username) ? true : false;
 
 function authorizationValid(request) {
     // https://stackoverflow.com/a/5957629
