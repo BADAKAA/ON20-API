@@ -174,7 +174,7 @@ async function updateEventPreview(e) {
                 input.style.height = input.scrollHeight + "px";
             }
         }
-        console.error("Event not found.");
+        showMessage("Event not found.");
         return;
     }
     const selectedEvent = await response.json();
@@ -192,9 +192,12 @@ async function deleteEvent(e) {
     if (!firstEventDisplayed) return showMessage("No event selected yet.");
     const eventSelector = $("#index-input");
     const response = await http.delete(ApiUrl + "events/delete/" + eventSelector.value, null,loginData);
-    eventSelector.value--;
+    
     updateEventPreview();
-    if (response.ok) showMessage("Deletion successful.",true);
+    if (response.ok) {
+        eventSelector.value--;
+        showMessage("Deletion successful.",true);
+    }
 }
 
 async function updateEvent(e) {
